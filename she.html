@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+		<title>贪吃蛇</title>
+		<style type="text/css">* {
+	margin: 0;
+	padding: 0;
+}
+
+#bigdiv {
+	width: 12rem;
+}
+
+#foot {
+	/*margin: 10px auto;*/
+	font-size: 16px;
+	display: none;
+	overflow: hidden;
+	/*position:relative;
+				bottom: 0.3rem;*/
+	margin-top: -35px;
+}
+
+select {
+	border-radius: 5px;
+	background-color: orange;
+	color: white;
+	border: 0px;
+	font-size: 16px;
+	margin-left: 20px;
+}
+
+#kaishi {
+	width: 1.2rem;
+	height: 0.5rem;
+	background: url("img/play.png") no-repeat;
+	background-size: 1.2rem 0.5rem;
+	/*color:white;*/
+	font-weight: bold;
+	text-align: center;
+	line-height: 60px;
+	border-radius: 5px;
+	position: absolute;
+	top: 26px;
+	left: 2.3rem;
+}
+
+/*.bcontent,
+.bcontent2 {
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.5);
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	display: none;
+	overflow: hidden;
+}*/
+.bcontent, .bcontent2{
+				width: 100%;
+				height: 100%;
+				background-color: rgba(0, 0, 0, 0.5);
+				position: fixed;
+				top: 0px;
+				left: 0px;
+				display: none;
+				overflow: hidden;
+				font-size:14px;
+				/*position:absolute;*/
+				padding-top:30px;
+			}
+
+
+
+
+.content {
+	background-color: white;
+	width: 25%;
+	line-height: 35px;
+	text-align: center;
+	position: relative;
+	top: 30%;
+	left: 0;
+	border-radius: 10px;
+	color: deeppink;
+	padding: 20px;
+	font-size: 0.2rem;
+}
+
+#bian {
+	display: inline-block;
+	vertical-align: middle;
+	margin-right: 0.5rem;
+}
+
+#skin {
+	display: inline-block;
+	vertical-align: middle;
+	width: 1.3rem;
+	padding: 5px;
+	height: 0.3rem;
+	line-height: 0.3rem;
+}
+
+#skin1 {
+	display: inline-block;
+	vertical-align: middle;
+	width: 1.3rem;
+	padding: 5px;
+	height: 0.3rem;
+	line-height: 0.3rem;
+}
+
+#money {
+	display: inline-block;
+	vertical-align: middle;
+	width: 1rem;
+	height: 0.3rem;
+	line-height: 0.3rem;
+	color: #FFFFFF;
+	border-radius: 4px;
+	background-color: pink;
+	margin-left: 0.2rem;
+}
+
+#more {
+	width: 0.6rem;
+	height: 0.3rem;
+	background-color: #ccc;
+	font-size: 0.2rem;
+	line-height: 0.3rem;
+	text-align: center;
+	border-radius: 10px;
+	position: relative;
+	bottom: 1rem;
+	left: 2.5rem;
+	color: chocolate;
+	font-weight: bold;
+	z-index: 10;
+}
+
+center {
+	position: relative;
+}
+
+#uname {
+	/*aaaaa*/
+	border: 0px;
+	border-radius: 5px;
+	width: 120px;
+	height: 30px;
+	padding-left: 8px;
+	/*margin-top:30px;*/
+	position: relative;
+	top: 50px;
+	left: 0rem;
+}
+
+#sub {
+	/*aaaa*/
+	width: 50px;
+	height: 30px;
+	border-radius: 5px;
+	border: 0px;
+	background-color: white;
+	position: relative;
+	top: 50px;
+	left: 0rem;
+	margin-left: 10px;
+}
+
+table {
+	/*aaaaaa*/
+	width: 400px;
+	margin-top: 20px;
+	border-spacing: 0;
+	background-color: white;
+	position: relative;
+	top: center;
+	left: center;
+	color: deeppink;
+	margin-bottom: 20px;
+	z-index: 11;
+}
+
+td {
+	/*aaaaaa*/
+	text-align: center;
+	height: 30px;
+}
+
+.bcontent2 span {
+	color: deeppink;
+	font-weight: bold;
+}
+
+.bcontent2 h3 {
+	height: 20px;
+	background: url("img/bang.png") no-repeat center center;
+	padding-top: 100px;
+}
+
+#close {
+	width: 20px;
+	height: 20px;
+	background-color: #CCCCCC;
+	position: relative;
+	top: -204px;
+	right: -188px;
+}
+#search{
+	width:1rem;
+}
+#team{ /*没发过*/
+			 	width:2rem;
+			 	/*height:1rem;*/
+			  /* margin-top:10px;*/
+			 	font-size:16px;
+			   font-weight:bold;
+			   color:greenyellow;
+			  /* margin-left:18px;*/
+			 display:inline-block;
+			 vertical-align: middle;
+			 }        
+
+
+
+@media only screen and (max-width:800px) {
+	#bigdiv {
+		width: 100%;
+	}
+	#gameview {
+		width: 100%;
+	}
+	#kaishi {
+		width: 15%;
+		height: 8%;
+		top: 1rem;
+		left: 1rem;
+	}
+	#foot {
+		width: 100%;
+	}
+	#more {
+		width: 30px;
+		height: 20px;
+		background-color: #ccc;
+		font-size: 10px;
+		white-space: nowrap;
+		line-height: 20px;
+		text-align: center;
+		border-radius: 10px;
+		position: relative;
+		bottom: 1.5rem;
+		left: 2.5rem;
+		color: chocolate;
+		font-weight: bold;
+		z-index: 10;
+	}
+	#skin {
+		display: inline-block;
+		vertical-align: middle;
+		width: 70px;
+		padding: 0px;
+		height: 20px;
+		line-height: 20px;
+		font-size: 10px;
+	}
+	#skin1 {
+		display: inline-block;
+		vertical-align: middle;
+		width: 70px;
+		padding: 0px;
+		height: 20px;
+		line-height: 20px;
+		font-size: 10px;
+	}
+	#money {
+		display: inline-block;
+		vertical-align: middle;
+		width: 1rem;
+		height: 20px;
+		line-height: 20px;
+		color: #FFFFFF;
+		border-radius: 4px;
+		background-color: pink;
+		margin-left: 0.2rem;
+		font-size: 10px;
+	}
+	
+	#team{ /*没发过*/
+			 	width:2rem;
+			 	/*height:1rem;*/
+			  /* margin-top:10px;*/
+			 	font-size:10px;
+			   font-weight:bold;
+			   color:greenyellow;
+			  /* margin-left:18px;*/
+			 display:inline-block;
+			 vertical-align: middle;
+			 }   
+}</style>
+	</head>
+
+	<body>
+
+		<div id="bigdiv">
+
+			<center>
+				<canvas id="gameview" width="850" height="500"></canvas>
+				<div id="kaishi">
+				</div>
+				<div id="more">
+					更多
+				</div>
+
+				<div id="foot">
+					<div id="bian">
+
+						<div id="" style="font-weight:bold;margin:10px 0;">
+							快← &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; →慢
+						</div>
+						<input type="range" name="" id="ranges" value="" min="100" max="1000" />
+						<div id="aranges">25米/550毫秒</div>
+					</div>
+
+					<select name="skin" id="skin" placeholder="换肤">
+						<!--<option value="num1">换肤</option>-->
+						<option value="11">背景皮肤一</option>
+						<option value="22">背景皮肤二</option>
+						<option id="skin33" value="33" disabled="disabled">背景皮肤三</option>
+						<option id="skin44" value="44" disabled="disabled">背景皮肤四</option>
+					</select>
+
+					<!--<select name="she" id="skin1">
+						<option value="111">蛇皮肤一</option>
+						<option value="222">蛇皮肤二</option>
+						<option value="333">蛇皮肤三</option>
+						
+					</select>-->
+					
+					<div id="money">充值</div>
+					<div id="team">
+						组长：孙伟</br>
+						成员：刘静          王铭瀚       马习同
+					</div>
+
+					<audio autoplay="autoplay" id="music">开始音乐</audio>
+					<audio id="music1">开始音乐</audio>
+
+				</div>
+
+				<div class="bcontent">
+					<input type="text" name="uname" id="uname" placeholder="请输入您的名字..." />
+					<input type="submit" value="提交" id="sub">
+
+					
+					<div class="content"></div>
+
+				</div>
+				
+				
+				<div class="bcontent2">
+					<h3 style="color:red">排行榜</h3>
+					<table border="1" cellspacing="0" cellpadding="">
+						<thead>
+						<tr>
+							<th>昵称</th>
+							<th>分数</th>
+							
+							<th>操作</th>
+						</tr>
+						</thead>
+						<tbody>
+						<tr>
+							<td>小红</td>
+							<td>100</td>
+						
+							<td>
+								<button id="deleatUser" class="but">删除</button>
+							</td>
+							
+						</tr>
+						<tr>
+							<td>小绿</td>
+							<td>50</td>
+						
+							<td>
+								<button id="deleatUser" class="but">删除</button>
+							</td>
+							
+						</tr>
+						</tbody>
+						
+						</table>
+						
+				        <span> 搜索：</span><input type="text" id="search"/>
+						<span>排序：</span><input type="button" value="分数排序" id="sort" />
+						<input type="button" value="姓名排序" id="sName" />
+					<div id="close">X</div>
+				</div>
+
+				
+				
+				
+				
+			</center>
+		</div>
+
+		<script type="text/javascript" src="js/jquery-2.1.3.min.js"></script>
+		<script type="text/javascript" src="js/snake.js">
+		</script>
+		<script type="text/javascript">$(function() {
+	var snakegame = new Snake();
+
+	//				$("#skin1").change(function(){
+	//         	  var $ur=$("#skin1")[0].value;
+	//         	  $(bodyImg).prop("src","img/body"+$ur+".jpg");
+	//         	  console.log($(bodyImg).prop("src"));
+	//         })
+
+	bgImg.onload = function() {
+		snakegame.init();
+	}
+
+	$("#skin").change(function() {//切换背景皮肤
+		var $url = $("#skin")[0].value;
+		$(bgImg).prop("src", "img/" + $url + ".jpg");
+		$(this).blur();
+	})
+
+	$("#kaishi").click(function() {//点击开始按钮，开始游戏
+
+		snakegame.start();
+		$(this).css("opacity", "0.7");
+		$("#music").attr("src", "img/1.mp3");
+
+		$("#foot").css("display", "none");
+		flag = false;
+		$("#more").css("opacity", "0.8");
+	})
+
+	$(".content").click(function() {//分数弹框
+		$(".bcontent").css("display", "none");
+//		snakegame.start();
+		$("#music").attr("src", "img/1.mp3");
+	})
+
+	//点击充值按钮输入内容添加到localstorage中
+	var balance = 0;
+	if(!localStorage.balance) {
+		localStorage.setItem("balance", parseInt(balance));
+	}
+	//PC端充值
+	$("#money").click(function() {
+		money = Number(prompt("请输入充值金额", ""));
+
+		localStorage.setItem("balance", money);
+		//					location = location;
+		loadALL();
+	})
+	//				loadALL();
+	function loadALL() {//充值解锁皮肤函数
+		var keys = localStorage.key(0);
+		var val = localStorage.getItem(keys);
+		console.log(val);
+		if(val <= 10 && val > 0) {
+			alert("充值成功，" + val + "元，解锁皮肤三");
+			$("#skin33").removeAttr("disabled");
+		} else if(val > 10 && val <= 100) {
+			alert("充值成功，" + val + "元，解锁皮肤三，四");
+			$("#skin33").removeAttr("disabled");
+			$("#skin44").removeAttr("disabled");
+		} else if(val > 100) {
+			alert("别霍霍钱");
+		}
+	}
+
+	var flag = false;
+	$("#more").click(function() {//点击更多，切换控制台显隐
+
+		if(!flag) {
+			$("#foot").css("display", "block");
+			flag = true;
+		} else {
+			$("#foot").css("display", "none");
+			flag = false;
+		}
+
+	})
+
+
+
+//aaaaaa  悬停时改变li的背景颜色
+			$("tbody tr").hover(function(){
+			$(this).css("background-color","yellow");
+			},function(){
+				$(this).css("background-color","");
+			});
+			
+			
+			
+			//删除点击事件
+			$("#deleatUser").click(function(){
+				$(this).closest("tr").detach();
+			});
+			
+			
+			//克隆原来存在的行
+			var $clonetr=$("tbody tr:first").clone(true);	
+			$("#sub").click(function(){
+				$(".bcontent").css("display","none");
+				$(".bcontent2").css("display","block");
+				var $name=$("#uname").val();
+				var $fen=$(".content").html().substring(5);////////
+//				var $fen=$(this).score;
+                console.log($(".content").html());
+				console.log($fen);
+				var $newtr=$clonetr.clone(true) ;
+				
+				var tds=$newtr[0].getElementsByTagName("td");
+				tds[0].innerHTML= $name;
+				
+				tds[1].innerHTML=$fen;
+				$newtr.appendTo($("tbody"));
+			})
+			
+			
+			//搜索
+		    $("#search").blur(function(){
+				$("tbody td").css("background-color","");
+				$("tbody td").each(function (){
+				//精确查找
+//				if($(this).html()==$("#search").val()){
+//					$(this).css("background-color","pink");
+//				}
+				
+				//模糊查找
+				var $trtxt=$(this).html();
+				var $seatxt=$("#search").val();
+				if ($trtxt.search( $seatxt)!=-1){
+					$(this).css("background-color","aquamarine");
+				}
+			})
+		})
+		
+		
+		//按照分数排序
+		$("#sort").click(function(){
+			//获得所有的行，并创建数组
+			var trarr=new Array();
+			
+			$("tbody tr").each(function(){
+				trarr.push($(this));
+			 })
+			//对数组进行排序
+			trarr.sort(function($tr1,$tr2){
+				var td1=$tr1.children().eq(1).text(); //获取到分数的行
+				var td2=$tr2.children().eq(1).text();//获取到分数的行
+		         return td1-td2;  //返回从小到大的排序
+			});
+			
+			$("tbody").append(trarr);// 把数组重新添加到tbody中
+			
+		});
+		//按照姓名来排序
+			$("#sName").click(function(){
+				var newarr=new Array();
+				$("tbody tr").each(function(){
+				newarr.push($(this));
+			    })
+				
+				newarr.sort(function($tr1,$tr2){
+					var nam1=$tr1.children().eq(0).text();
+					var nam2=$tr2.children().eq(0).text();
+					if (nam1.localeCompare(nam2)==1){
+						return 1;//返回1 就交换
+					}else {
+						return -1;
+					}
+				});
+				$("tbody").append(newarr); //把数组重新添加到tbody中
+			});
+		
+		//关闭事件  让整个bcontent消失
+		$("#close").click(function(){
+			$(".bcontent2").css("display","none");
+		})
+
+
+
+
+
+
+
+	function fn() {//响应式页面rem
+		var basefontsize = window.innerWidth / 12;
+		$("html").css("font-size", basefontsize);
+	}
+	fn();
+	$(window).resize(function() {
+		fn();
+	})
+
+})</script>
+	</body>
+
+</html>
